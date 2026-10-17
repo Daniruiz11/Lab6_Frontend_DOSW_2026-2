@@ -27,14 +27,14 @@ function TaskForm({ onSubmit, taskToEdit = null, onCancel }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await onSubmit({
+    const ok = await onSubmit({
       title: form.title.trim(),
       description: form.description.trim() || null,
       priority: form.priority,
       dueDate: form.dueDate || null,
     });
 
-    if (!taskToEdit) {
+    if (ok && !taskToEdit) {
       setForm(EMPTY_FORM);
     }
   };
